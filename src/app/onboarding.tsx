@@ -1,5 +1,4 @@
 import { useRouter } from "expo-router";
-import { useState } from "react";
 import {
   Image,
   Platform,
@@ -11,54 +10,53 @@ import {
   View,
 } from "react-native";
 
-export default function Onboarding() {
+export default function Onboarding1() {
   const router = useRouter();
-  const [currentStep, setCurrentStep] = useState(1);
 
   const handleNext = () => {
-    if (currentStep < 3) {
-      setCurrentStep(currentStep + 1);
-    } else {
-      router.push("/");
-    }
+    router.push("/onboarding2");
   };
 
   const handleSkip = () => {
-    router.push("/");
+    router.push("/onboarding2");
   };
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.topBar}>
         <View style={styles.stepContainer}>
-          <Text style={styles.darkStep}>{currentStep}</Text>
+          <Text style={styles.darkStep}>1</Text>
           <Text style={styles.dullStep}>/3</Text>
         </View>
         <TouchableOpacity onPress={handleSkip}>
           <Text style={styles.skipText}>Skip</Text>
         </TouchableOpacity>
       </View>
+
       <View style={styles.contentContainer}>
         <Image
           source={require("../../assets/images/Pictures/mani.png")}
           style={styles.image}
         />
-        <Text style={styles.title}>Choose Products</Text>
+        <Text style={styles.title}>Choose Product</Text>
         <Text style={styles.subTitle}>
           Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
           sint. Velit officia consequat duis enim velit mollit.
         </Text>
       </View>
-      <View style={styles.mainView}>
-        <View />
-        <View style={styles.bottomBar}>
-          <View style={styles.indicatorContainer}>
-            <View style={[styles.dot, currentStep === 1 && styles.activeDot]} />
-            <View style={[styles.dot, currentStep === 2 && styles.activeDot]} />
-            <View style={[styles.dot, currentStep === 3 && styles.activeDot]} />
-          </View>
 
-          <TouchableOpacity onPress={handleNext}>
+      <View style={styles.mainView}>
+        <View style={styles.bottomBar}>
+          <View style={styles.spacer} />
+          <View style={styles.indicatorContainer}>
+            <View style={[styles.dot, styles.activeDot]} />
+            <View style={styles.dot} />
+            <View style={styles.dot} />
+          </View>
+          <TouchableOpacity
+            onPress={handleNext}
+            style={styles.nextButtonContainer}
+          >
             <Text style={styles.buttonText}>Next</Text>
           </TouchableOpacity>
         </View>
@@ -126,7 +124,6 @@ const styles = StyleSheet.create({
   },
   mainView: {
     width: "100%",
-    justifyContent: "space-between",
   },
   bottomBar: {
     flexDirection: "row",
@@ -135,6 +132,9 @@ const styles = StyleSheet.create({
     width: "100%",
     marginBottom: 10,
     paddingHorizontal: 10,
+  },
+  spacer: {
+    width: 40,
   },
   indicatorContainer: {
     flexDirection: "row",
@@ -151,6 +151,10 @@ const styles = StyleSheet.create({
     width: 24,
     backgroundColor: "#17223B",
     borderRadius: 4,
+  },
+  nextButtonContainer: {
+    width: 40,
+    alignItems: "flex-end",
   },
   buttonText: {
     fontSize: 18,
