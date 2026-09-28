@@ -14,7 +14,7 @@ export default function Onboarding3() {
   const router = useRouter();
 
   const handleGetStarted = () => {
-    router.push("/");
+    router.push("/welcom");
   };
 
   const handlePrev = () => {
@@ -22,7 +22,7 @@ export default function Onboarding3() {
   };
 
   const handleSkip = () => {
-    router.push("/");
+    router.push("/welcom");
   };
 
   return (
