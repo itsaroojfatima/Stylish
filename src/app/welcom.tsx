@@ -1,6 +1,8 @@
-import { AntDesign, FontAwesome, Ionicons } from "@expo/vector-icons";
-import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
-import Fontisto from "@expo/vector-icons/Fontisto";
+import GoogleIcon from "@/assets/expo.icon/icons/google-svg";
+import LockIcon from "@/assets/expo.icon/icons/lock-svg";
+import ProfileIcon from "@/assets/expo.icon/icons/profile-svg";
+import { FontAwesome, Ionicons } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
 import { useState } from "react";
 import {
   SafeAreaView,
@@ -12,16 +14,21 @@ import {
 } from "react-native";
 
 export default function LoginScreen() {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+
+  const handleLogin = () => {};
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
         <Text style={styles.title}>Welcome{"\n"}Back!</Text>
         <View style={styles.inputContainer}>
-          <FontAwesome5 name="user-alt" size={24} color="black" />
+          <View style={styles.iconContainer}>
+            <ProfileIcon />
+          </View>
           <TextInput
             style={styles.input}
             placeholder="Username or Email"
@@ -30,9 +37,10 @@ export default function LoginScreen() {
             onChangeText={setEmail}
           />
         </View>
-
         <View style={styles.inputContainer}>
-          <Fontisto name="locked" size={24} color="black" />
+          <View style={styles.iconContainer}>
+            <LockIcon />
+          </View>
           <TextInput
             style={styles.input}
             placeholder="Password"
@@ -42,22 +50,31 @@ export default function LoginScreen() {
             onChangeText={setPassword}
           />
           <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
-            <Ionicons name="eye-outline" size={24} color="black" />
+            <Ionicons
+              name={showPassword ? "eye-outline" : "eye-off-outline"}
+              size={20}
+              color="#7F7F7F"
+            />
           </TouchableOpacity>
         </View>
-        <TouchableOpacity style={styles.forgotContainer}>
+
+        <TouchableOpacity
+          style={styles.forgotContainer}
+          onPress={() => router.push("/forget")}
+        >
           <Text style={styles.forgotText}>Forgot Password?</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.loginButton}>
+        <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
           <Text style={styles.loginButtonText}>Login</Text>
         </TouchableOpacity>
+
         <View style={styles.dividerContainer}>
           <Text style={styles.dividerText}>- OR Continue with -</Text>
         </View>
 
         <View style={styles.socialContainer}>
           <TouchableOpacity style={styles.socialButton}>
-            <AntDesign name="google" size={22} color="#EA4335" />
+            <GoogleIcon />
           </TouchableOpacity>
           <TouchableOpacity style={styles.socialButton}>
             <FontAwesome name="apple" size={22} color="#000" />
@@ -68,7 +85,7 @@ export default function LoginScreen() {
         </View>
         <View style={styles.footerContainer}>
           <Text style={styles.footerText}>Create An Account </Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => router.push("/create-account")}>
             <Text style={styles.signUpText}>Sign Up</Text>
           </TouchableOpacity>
         </View>
@@ -105,8 +122,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#E8E8E8",
   },
-  icon: {
+  iconContainer: {
     marginRight: 12,
+    justifyContent: "center",
+    alignItems: "center",
   },
   input: {
     flex: 1,
