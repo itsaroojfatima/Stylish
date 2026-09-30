@@ -5,6 +5,7 @@ import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import {
+  Platform,
   SafeAreaView,
   StyleSheet,
   Text,
@@ -126,7 +127,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     paddingTop: 90,
     justifyContent: "flex-start",
+    paddingBottom: Platform.OS === "ios" ? 40 : 50,
   },
+
   title: {
     fontSize: 34,
     fontWeight: "bold",
