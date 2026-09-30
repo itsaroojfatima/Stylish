@@ -1,7 +1,8 @@
-import { Ionicons } from "@expo/vector-icons";
+import GmailIcon from "@/assets/expo.icon/icons/gmail-svg";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import {
+  Platform,
   SafeAreaView,
   StyleSheet,
   Text,
@@ -23,12 +24,7 @@ export default function ForgotPasswordScreen() {
       <View style={styles.content}>
         <Text style={styles.title}>Forgot{"\n"}password?</Text>
         <View style={styles.inputContainer}>
-          <Ionicons
-            name="mail-outline"
-            size={20}
-            color="#7F7F7F"
-            style={styles.icon}
-          />
+          <GmailIcon />
           <TextInput
             style={styles.input}
             placeholder="Enter your email address"
@@ -61,6 +57,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     paddingTop: 70,
     justifyContent: "flex-start",
+    paddingBottom: Platform.OS === "ios" ? 40 : 50,
   },
   title: {
     fontSize: 34,
