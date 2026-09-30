@@ -1,6 +1,6 @@
 import { useRouter } from "expo-router";
 import { useEffect } from "react";
-import { Image, StyleSheet, View } from "react-native";
+import { Image, Platform, StyleSheet, View } from "react-native";
 
 export default function Index() {
   const router = useRouter();
@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+    paddingBottom: Platform.OS === "ios" ? 40 : 50,
   },
   image: {
     width: "100%",
