@@ -5,6 +5,7 @@ import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import {
+  Platform,
   SafeAreaView,
   StyleSheet,
   Text,
@@ -64,7 +65,12 @@ export default function LoginScreen() {
         >
           <Text style={styles.forgotText}>Forgot Password?</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
+
+        {/* Error yahan thik kar diya hai */}
+        <TouchableOpacity
+          style={styles.loginButton}
+          onPress={() => router.push("/get-started")}
+        >
           <Text style={styles.loginButtonText}>Login</Text>
         </TouchableOpacity>
 
@@ -103,6 +109,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 24,
     justifyContent: "center",
+    paddingBottom: Platform.OS === "ios" ? 40 : 50,
   },
   title: {
     fontSize: 36,
